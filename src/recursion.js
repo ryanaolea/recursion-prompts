@@ -270,6 +270,15 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+    var count = 0;
+    for (var key in obj) {
+        if (typeof(obj[key]) === 'string' && obj[key] === value) {
+            count ++;
+        } else if (typeof (obj[key]) === 'object') {
+            count += countValuesInObj(obj[key], value);
+        }
+    }
+    return count;
 };
 
 
